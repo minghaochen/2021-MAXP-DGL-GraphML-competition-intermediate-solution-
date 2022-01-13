@@ -90,8 +90,8 @@ def run(args, data, device, stage=0, subset_list=None):
     val_loss = []
 
     # 节点特征
-    base_path = "Z:/DataScience/DGL"
-    base_path = "E:/ZJL/DGL"
+    base_path = ""
+    base_path = ""
     node_info = np.load(os.path.join(base_path, 'node_info.npy'))
     # features_n2v = np.load(os.path.join(base_path, 'features_n2v.npy'))
 

@@ -45,7 +45,7 @@ def load_dgl_graph(base_path):
 
     return graph, labels, tr_label_idx, val_label_idx, test_label_idx, node_feat
 
-BASE_PATH = 'E:\ZJL\DGL'
+BASE_PATH = ''
 device_id = torch.device("cpu")
 
 graph, labels, train_nid, val_nid, test_nid, node_feat = load_dgl_graph(BASE_PATH)
@@ -205,7 +205,7 @@ eval_inx = np.concatenate((train_nid,val_nid))
 # 先cs再融合
 # Z:\DataScience\DGL\ SAGN_with_SLE\intermediate_outputs\ogbn-papers100M\sagn
 # for fold in range(7):
-#     val_batch_list = torch.load(f'Z:/DataScience/DGL/ SAGN_with_SLE/intermediate_outputs/ogbn-papers100M/sagn/fold_{fold}.pt').cpu().numpy()
+#     val_batch_list = torch.load(f'fold_{fold}.pt').cpu().numpy()
 #     res_result, result = double_correlation_autoscale(labels.reshape(-1,1), val_batch_list, split_idx, **mlp_dict)
 #     acc = evaluator(torch.tensor(np.argmax(result[eval_inx], axis=1)), labels[eval_inx])
 #     print("after acc", acc)
@@ -218,7 +218,7 @@ eval_inx = np.concatenate((train_nid,val_nid))
 
 for fold in range(7):
     val_batch_list = torch.load(
-        f'C:/Users/11732031/Desktop/maxp_baseline_model-main/ SAGN_with_SLE/intermediate_outputs/ogbn-papers100M/sagn/pretrain用于传播/{fold}.pt').cpu().numpy()
+        f'{fold}.pt').cpu().numpy()
     if fold == 0:
         res2 = val_batch_list / 7
     else:
@@ -255,15 +255,15 @@ for i in range(23):
 
 
 res_origin = np.argmax(res_origin, axis=1)
-submit = pd.read_csv("E:/ZJL/DGL/sample_submission_for_validation.csv")
+submit = pd.read_csv("sample_submission_for_validation.csv")
 submit["label"] = res_origin[0:submit.shape[0]]
 submit["label"] = submit["label"].map(score_map)
 print(submit.head())
-submit.to_csv("E:/ZJL/DGL/submission_sagn.csv", index=None)
+submit.to_csv("submission_sagn.csv", index=None)
 
 res2 = np.argmax(res2, axis=1)
-submit = pd.read_csv("E:/ZJL/DGL/sample_submission_for_validation.csv")
+submit = pd.read_csv("sample_submission_for_validation.csv")
 submit["label"] = res2[0:submit.shape[0]]
 submit["label"] = submit["label"].map(score_map)
 print(submit.head())
-submit.to_csv("E:/ZJL/DGL/submission_sagn_cs.csv", index=None)
+submit.to_csv("submission_sagn_cs.csv", index=None)

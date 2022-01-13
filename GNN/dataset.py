@@ -28,8 +28,8 @@ def load_dataset(device, args, fold, mask,test_mode):
     """
     Load dataset and move graph and features to device
     """
-    # base_path = 'Z:\DataScience\DGL'
-    base_path = 'E:\ZJL\DGL'
+    # base_path = ''
+    base_path = ''
     graph, labels, tr_label_idx, val_label_idx, test_label_idx, node_feat = load_dgl_graph_k_fold(base_path,fold=fold, mask=mask, test_mode=test_mode)
     labels = labels.to(device=device, dtype=torch.int64)  # 自己加的
 
