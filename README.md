@@ -13,15 +13,26 @@
 
 Scalable and Adaptive Graph Neural Networks with Self-Label-Enhanced training
 
+# 特征工程
+
+1. 节点特征统计特征 node info
+2. 随机游走统计特征 walk_label_features
+3. node2vec特征
+
+特征工程1,2的想法来源于队友Arthur Morgan，感谢！
+
 # 运行指令
 
 python sagn.py
 
 python CorrectAndSmooth.py
 
+注：没有采用SLE的方式进行训练
+
 # 线上成绩
 
 55.9~
 
-**PS：时间原因代码未整理，不过可直接运行出结果，有帮助记得给个star~**
+**PS：时间原因代码未整理，不过代码无bug可直接运行，有帮助记得给个star~**
 
+Remark：除了特征工程带来上分，一个重要的上分点在于label use的方式，通过切换masked节点带来上分
